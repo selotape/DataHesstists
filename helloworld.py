@@ -1,4 +1,4 @@
-print("hellooo Ron11222333 ve ze ba bash1")
+print('I promise i wil lstop with the hebrew, or atleast i will try')
 
 
 
