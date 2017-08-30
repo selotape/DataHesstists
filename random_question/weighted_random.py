@@ -11,7 +11,7 @@ sample_weights = [0.1, 0.15, 0.4, 0.1, 0.05, 0.066666667, 0.133333333]
 # TODO: Hess should implement!
 def weighted_sampler(data, weights):
     """Should return a random item from data array, weighted by the weights array"""
-    raise NotImplemented
+    raise NotImplementedError("Hess should implement!")
 
 
 
@@ -26,7 +26,7 @@ def main():
         item = weighted_sampler(sample_data, sample_weights)
         results_count[item] += 1
     for item, weight in zip(sample_data, sample_weights):
-        assert close_enough(results_count[item] / TEST_LOOP, weight), "You suck :("
+        assert close_enough(results_count[item] / TEST_LOOP, weight), "not accurate enough!"
     print('Great Success!!')
 
 
