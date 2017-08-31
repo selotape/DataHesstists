@@ -1,19 +1,29 @@
 from collections import defaultdict
+from itertools import accumulate
+import random
 
-TEST_LOOP = 10000
-ACCURACY = 0.001
+TEST_LOOP = 100000
+ACCURACY = 0.01
 
 sample_data = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 sample_weights = [0.1, 0.15, 0.4, 0.1, 0.05, 0.066666667, 0.133333333]
 
 
-
 # TODO: Hess should implement!
 def weighted_sampler(data, weights):
     """Should return a random item from data array, weighted by the weights array"""
-    raise NotImplementedError("Hess should implement!")
+    random_number = random.random()
+    print('this is the: %f' % random_number)
+    accumulated_list = accumulated_list_function(weights)
+    print('This is the accumulated list: %s' % str(accumulated_list))
+    for item_idx, curr_weight in enumerate(accumulated_list):
+        if (random_number >= curr_weight) and (random_number <= accumulated_list[item_idx + 1]):
+            print('this the data chosen: %s' % data[item_idx])
+            return data[item_idx]
 
 
+def accumulated_list_function(weights):
+    return [0] + list((accumulate(weights)))
 
 
 def close_enough(float1, float2):
