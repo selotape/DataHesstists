@@ -1,14 +1,16 @@
 import random
+from pprint import pprint
 
-SIZE_OF_UNIVERSE = 4
-NUMBER_OF_SUBSETS = 4
+
+SIZE_OF_UNIVERSE = 1000
+NUMBER_OF_SUBSETS = 10
 CARDINALITY = 2
 REMAINING_SUBSET = NUMBER_OF_SUBSETS - CARDINALITY
 ELEMENTS_OF_UNIVERSE = list(range(SIZE_OF_UNIVERSE))
 RATIO = int(NUMBER_OF_SUBSETS / CARDINALITY)
 # ratio has to be integer
 NUMBER_OF_DUPLICATE = int((NUMBER_OF_SUBSETS - CARDINALITY) / (CARDINALITY / 2))
-TEST_LOOP = 1
+TEST_LOOP = 200
 
 
 def make_universe():
@@ -52,15 +54,16 @@ def proposed_algorithm(subsets):
 def main():
     print('helllooo')
     subsets = make_universe()
-    print('This is the universe: ' + str(subsets))
+    print('This is the universe: ')
+    pprint(subsets)
     results_sum = 0.0
     for i in range(TEST_LOOP):
         subsets = random.sample(subsets, NUMBER_OF_SUBSETS)
         print('This is the universe after sampling: ' + str(subsets))
         solution, uncovered_elements = proposed_algorithm(subsets)
-        results_sum += (1 - float(len(uncovered_elements) / SIZE_OF_UNIVERSE))
+        results_sum += (1 - len(uncovered_elements) / SIZE_OF_UNIVERSE)
 
-    print('The expectation of the competetive ratio is %f' % float(results_sum / TEST_LOOP))
+    print('The expectation of the competitive ratio is %f' % float(results_sum / TEST_LOOP))
 
 
 if __name__ == '__main__':
